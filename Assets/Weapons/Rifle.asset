@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c988c38c55c4a4efd93e0f7207dc4bb4, type: 3}
+  m_Name: Rifle
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.WeaponData
+  weaponName: Rifle
+  color: {r: 1, g: 1, b: 1, a: 1}
+  modelPrefab: {fileID: 4615032404377869639, guid: a3efbec10aa9f41ddab80762debdd038, type: 3}
+  heldPosition: {x: 0, y: 0, z: 0}
+  heldRotation: {x: 0, y: 180, z: 0}
+  heldScale: 1
+  pickupScale: 1
+  damage: 8
+  fireRate: 0.8
+  pellets: 5
+  spreadAngle: 30
+  infiniteAmmo: 0
+  maxAmmo: 8
