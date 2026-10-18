@@ -44,6 +44,7 @@ namespace RobotArena.Enemy
 
         private HealthSystem healTarget;
         private CoverPoint reservedCover;
+        private NpcPatrol patrol;
 
         private float decisionTimer;
         private float healTimer;
@@ -56,6 +57,9 @@ namespace RobotArena.Enemy
             agent = GetComponent<NavMeshAgent>();
             perception = GetComponent<RobotPerception>();
             health = GetComponent<HealthSystem>();
+
+            patrol = GetComponent<NpcPatrol>();
+            if (patrol == null) patrol = gameObject.AddComponent<NpcPatrol>();
         }
 
         private void OnEnable()
@@ -80,6 +84,7 @@ namespace RobotArena.Enemy
 
             if (decisionTimer <= 0f) { Decide(); decisionTimer = decisionInterval; }
             if (State == MedicState.Healing) TickHealing();
+            if (State == MedicState.Idle) patrol.Tick(agent);   // Medic berpatroli saat tidak ada yang disembuhkan
         }
 
         private void Decide()
@@ -110,6 +115,7 @@ namespace RobotArena.Enemy
             if (fleeScore > best)  { best = fleeScore;  chosen = MedicState.Fleeing; }
             if (coverScore > best) { best = coverScore; chosen = MedicState.Hiding; }
 
+            if (chosen == MedicState.Idle && State != MedicState.Idle) patrol.Begin();
             State = chosen;
             Execute(chosen, threat);
         }
@@ -140,8 +146,7 @@ namespace RobotArena.Enemy
                     }
                     break;
                 case MedicState.Idle:
-                    agent.ResetPath();
-                    break;
+                    break; // berpatroli lewat patrol.Tick() di Update
             }
         }
 

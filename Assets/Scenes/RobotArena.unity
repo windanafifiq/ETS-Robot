@@ -791,7 +791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.y
@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalRotation.w
@@ -836,13 +836,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 115481287}
   m_SourcePrefab: {fileID: 100100000, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
 --- !u!4 &115481285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
   m_PrefabInstance: {fileID: 115481284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &115481286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+  m_PrefabInstance: {fileID: 115481284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &115481287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115481286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 6
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1 &131296680
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,7 +4162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 20.7
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4174,13 +4199,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1520095468}
   m_SourcePrefab: {fileID: 100100000, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
 --- !u!4 &1520095466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
   m_PrefabInstance: {fileID: 1520095465}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1520095467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+  m_PrefabInstance: {fileID: 1520095465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520095468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520095467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 4
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1 &1587469647
 GameObject:
   m_ObjectHideFlags: 0
@@ -5539,7 +5589,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10.3
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5584,13 +5634,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8949221089692189818}
   m_SourcePrefab: {fileID: 100100000, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
 --- !u!4 &8949221089692189816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
   m_PrefabInstance: {fileID: 8949221089692189815}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8949221089692189817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+  m_PrefabInstance: {fileID: 8949221089692189815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8949221089692189818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949221089692189817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 10
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

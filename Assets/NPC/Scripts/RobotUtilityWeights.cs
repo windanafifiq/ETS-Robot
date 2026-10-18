@@ -24,8 +24,14 @@ namespace RobotArena.Enemy
         [Tooltip("Di bawah persentase HP ini robot masuk state Retreat (0.25 = 25%).")]
         [Range(0.05f, 0.9f)] public float retreatHPThreshold = 0.25f;
 
-        [Header("Perilaku Khusus")]
+                [Header("Perilaku Khusus")]
         [Tooltip("Centang untuk Sniper: setelah menembak, robot ingin bersembunyi di cover.")]
         public bool hideAfterShooting = false;
+
+        [Header("Gerakan")]
+        [Tooltip("Centang untuk Attacker: tetap bergerak melingkar (strafe) saat menembak, tidak berdiri diam.")]
+        public bool keepMovingWhileAttacking = false;
+        [Tooltip("Seberapa jauh bergeser tiap langkah strafe (meter).")]
+        public float strafeDistance = 3f;
     }
 }

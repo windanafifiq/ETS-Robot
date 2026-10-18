@@ -20,3 +20,5 @@ MonoBehaviour:
   attackRange: 9
   retreatHPThreshold: 0.25
   hideAfterShooting: 0
+  keepMovingWhileAttacking: 1
+  strafeDistance: 3

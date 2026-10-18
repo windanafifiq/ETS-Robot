@@ -42,6 +42,8 @@ namespace RobotArena.Enemy
         private float decisionTimer;
         private float recentDamageTimer;
         private CoverPoint reservedCover;
+        private NpcPatrol patrol;
+        private int strafeSign;
 
         private bool WasDamagedRecently => recentDamageTimer > 0f;
 
@@ -50,6 +52,9 @@ namespace RobotArena.Enemy
             agent = GetComponent<NavMeshAgent>();
             perception = GetComponent<RobotPerception>();
             health = GetComponent<HealthSystem>();
+
+            patrol = GetComponent<NpcPatrol>();
+            if (patrol == null) patrol = gameObject.AddComponent<NpcPatrol>();
 
             if (utilityWeights == null)
             {
@@ -81,7 +86,10 @@ namespace RobotArena.Enemy
             stateTimer += Time.deltaTime;
             weaponTimer -= Time.deltaTime;
             decisionTimer -= Time.deltaTime;
-            recentDamageTimer -= Time.deltaTime;
+             recentDamageTimer -= Time.deltaTime;
+
+            // Saat bertarung dan melihat Player, arah badan diatur FaceTarget(), bukan oleh agent
+            agent.updateRotation = !(CurrentState == RobotState.Combat && perception.CanSeePlayer);
 
             switch (CurrentState)
             {
@@ -99,12 +107,18 @@ namespace RobotArena.Enemy
             stateTimer = 0f;
             decisionTimer = 0f; 
             if (newState != RobotState.Retreat && newState != RobotState.Combat) ReleaseCover();
+            if (newState == RobotState.Idle) patrol.Begin();
         }
 
         private void HandleIdle()
         {
-            agent.isStopped = true;
-            if (perception.CanSeePlayer) ChangeState(RobotState.Alert);
+            if (perception.CanSeePlayer)
+            {
+                ChangeState(RobotState.Alert);
+                return;
+            }
+
+            patrol.Tick(agent);   // berpatroli, tidak berdiri diam
         }
 
         private void HandleAlert()
@@ -158,7 +172,12 @@ namespace RobotArena.Enemy
             switch (action)
             {
                 case UtilityAction.Attack:
-                    if (canShoot) { agent.ResetPath(); TryFireWeapon(); }
+                    if (canShoot)
+                    {
+                        if (utilityWeights.keepMovingWhileAttacking) StrafeAround(targetPos, distance);
+                        else agent.ResetPath();
+                        TryFireWeapon();
+                    }
                     else { NavUtil.TryMoveTo(agent, targetPos); }
                     break;
                 case UtilityAction.MaintainDistance:
@@ -174,6 +193,28 @@ namespace RobotArena.Enemy
                     ChangeState(RobotState.Retreat);
                     break;
             }
+        }
+
+                // Bergerak melingkar di sekitar Player supaya robot bukan sasaran diam
+        private void StrafeAround(Vector3 targetPos, float distance)
+        {
+            Vector3 toTarget = targetPos - transform.position;
+            toTarget.y = 0f;
+            if (toTarget.sqrMagnitude < 0.01f) return;
+            toTarget.Normalize();
+
+            // Sesekali ganti arah geser (kiri/kanan)
+            if (strafeSign == 0 || Random.value < 0.25f) strafeSign = Random.value < 0.5f ? -1 : 1;
+
+            Vector3 side = Vector3.Cross(Vector3.up, toTarget) * strafeSign;
+
+            // Dekati atau jauhi sedikit supaya jaraknya mendekati jarak ideal
+            float forward = 0f;
+            if (distance > utilityWeights.idealCombatDistance * 1.3f) forward = 1f;
+            else if (distance < utilityWeights.idealCombatDistance * 0.7f) forward = -1f;
+
+            Vector3 destination = transform.position + side * utilityWeights.strafeDistance + toTarget * forward * 2f;
+            NavUtil.TryMoveTo(agent, destination);
         }
 
         private void TryFireWeapon()
