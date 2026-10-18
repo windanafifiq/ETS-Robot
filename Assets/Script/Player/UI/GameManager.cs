@@ -33,7 +33,7 @@ namespace RobotArena
             if (autoFindEnemies)
             {
                 enemies.Clear();
-                HealthSystem[] all = FindObjectsByType<HealthSystem>(FindObjectsSortMode.None);
+                HealthSystem[] all = FindObjectsByType<HealthSystem>(FindObjectsInactive.Exclude);
                 foreach (HealthSystem h in all)
                 {
                     if (h.Team == Team.Enemy) enemies.Add(h);
