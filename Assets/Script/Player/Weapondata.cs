@@ -20,10 +20,15 @@ namespace RobotArena
         public float pickupScale = 1f;
 
         [Header("Tembakan")]
+        public AudioClip shootSound;               // opsional: suara saat menembak
         public int damage = 10;
         public float fireRate = 0.25f;             // jeda antar tembakan (detik)
         public int pellets = 1;                    // jumlah peluru per tembakan (shotgun > 1)
         public float spreadAngle = 0f;             // sebaran peluru (derajat)
+
+        [Header("Peluru khusus (opsional, mis. roket Bazooka)")]
+        public Projectile projectileOverride;      // kosong = pakai peluru standar
+        public float explosionRadius = 0f;         // > 0 = meledak dan melukai area
 
         [Header("Amunisi")]
         public bool infiniteAmmo = true;

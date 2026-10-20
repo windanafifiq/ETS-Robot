@@ -9,7 +9,7 @@ namespace RobotArena
     {
         private static Material particleMaterial;
 
-        private static Material GetMaterial()
+        public static Material GetMaterial()
         {
             if (particleMaterial == null)
             {
@@ -89,7 +89,7 @@ namespace RobotArena
             Object.Destroy(go, duration);
         }
 
-        private static void ApplyFade(ParticleSystem ps)
+        public static void ApplyFade(ParticleSystem ps)
         {
             ParticleSystem.ColorOverLifetimeModule col = ps.colorOverLifetime;
             col.enabled = true;

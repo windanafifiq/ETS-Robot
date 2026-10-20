@@ -42,6 +42,7 @@ namespace RobotArena
             {
                 defaultWeapon = ScriptableObject.CreateInstance<WeaponData>();
                 defaultWeapon.weaponName = "Pistol";
+                Debug.LogWarning("PlayerShooting: kotak Default Weapon KOSONG, memakai pistol cadangan tanpa suara dan tanpa model. Isi dengan asset Pistol.", this);
             }
         }
 
@@ -81,6 +82,11 @@ namespace RobotArena
             CurrentWeapon = weapon;
             CurrentAmmo = weapon.infiniteAmmo ? -1 : weapon.maxAmmo;
 
+            if (weapon.shootSound == null)
+            {
+                Debug.LogWarning("PlayerShooting: senjata '" + weapon.weaponName + "' belum punya Shoot Sound.", this);
+            }
+
             if (heldModel != null) Destroy(heldModel);
             if (weapon.modelPrefab != null && weaponHolder != null)
             {
@@ -113,9 +119,13 @@ namespace RobotArena
                 float angle = count > 1 ? UnityEngine.Random.Range(-w.spreadAngle / 2f, w.spreadAngle / 2f) : 0f;
                 Quaternion rotation = firePoint.rotation * Quaternion.Euler(0f, angle, 0f);
 
-                Projectile p = Instantiate(projectilePrefab, firePoint.position, rotation);
-                p.Initialize(damage, health.Team);
+                Projectile prefab = w.projectileOverride != null ? w.projectileOverride : projectilePrefab;
+                Projectile p = Instantiate(prefab, firePoint.position, rotation);
+                p.Initialize(damage, health.Team, w.explosionRadius);
             }
+
+            ShootEffect.MuzzleFlash(firePoint, ShootEffect.PlayerColor);
+            ShootEffect.PlaySound2D(w.shootSound, 1f);
 
             if (!w.infiniteAmmo)
             {
