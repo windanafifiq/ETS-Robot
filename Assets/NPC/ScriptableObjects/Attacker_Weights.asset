@@ -17,8 +17,10 @@ MonoBehaviour:
   coverWeight: 0.5
   retreatWeight: 0.8
   idealCombatDistance: 5
-  attackRange: 9
+  attackRange: 5
   retreatHPThreshold: 0.25
   hideAfterShooting: 0
+  isMelee: 0
+  meleeRange: 2
   keepMovingWhileAttacking: 1
   strafeDistance: 3
