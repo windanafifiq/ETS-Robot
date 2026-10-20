@@ -3,26 +3,22 @@ using UnityEngine;
 
 public class RobotPunchController : MonoBehaviour
 {
-    [Header("Animation")]
     public Animator animator;
-
-    [Header("Punch Settings")]
-    public float punchCooldown = 0.7f;
+    public float punchCooldown = 0.6f;
 
     private float nextPunchTime;
+    private bool punchRight = true;
 
     void Awake()
     {
         if (animator == null)
-        {
             animator = GetComponentInChildren<Animator>();
-        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) &&
-            Time.time >= nextPunchTime)
+        if (Input.GetKeyDown(KeyCode.F)
+            && Time.time >= nextPunchTime)
         {
             Punch();
         }
@@ -30,16 +26,20 @@ public class RobotPunchController : MonoBehaviour
 
     void Punch()
     {
-        if (animator == null)
+        if (animator == null) return;
+
+        if (punchRight)
         {
-            Debug.LogWarning("Animator belum terpasang!");
-            return;
+            animator.SetTrigger("Punch");
+            Debug.Log("Robot memukul KANAN!");
+        }
+        else
+        {
+            animator.SetTrigger("PunchLeft");
+            Debug.Log("Robot memukul KIRI!");
         }
 
-        animator.SetTrigger("Punch");
-
+        punchRight = !punchRight;
         nextPunchTime = Time.time + punchCooldown;
-
-        Debug.Log("Robot melakukan pukulan kanan!");
     }
 }
