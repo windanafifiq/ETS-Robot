@@ -791,15 +791,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.63
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.9
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5587,13 +5587,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1216355577}
     m_Modifications:
+    - target: {fileID: 1363343580060963768, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360970105180864178, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: detectionRadius
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535488891304672207, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: damage
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535488891304672207, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: weaponCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.3
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5638,6 +5654,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8949221089692189818}
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8949221089692189826}
   m_SourcePrefab: {fileID: 100100000, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
 --- !u!4 &8949221089692189816 stripped
 Transform:
@@ -5666,6 +5685,20 @@ MonoBehaviour:
   maxPause: 2
   arriveDistance: 1
   maxLegTime: 10
+--- !u!114 &8949221089692189826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949221089692189817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1bf7495c5189447add16a290e164db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Npcdiagnostics
+  autoPrint: 1
+  interval: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

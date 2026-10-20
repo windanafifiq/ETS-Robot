@@ -28,6 +28,12 @@ namespace RobotArena.Enemy
         [Tooltip("Centang untuk Sniper: setelah menembak, robot ingin bersembunyi di cover.")]
         public bool hideAfterShooting = false;
 
+        [Header("Serangan Jarak Dekat")]
+        [Tooltip("Centang untuk Attacker yang memukul/menendang (tanpa senjata tembak).")]
+        public bool isMelee = false;
+        [Tooltip("Jarak maksimal pukulan/tendangan mengenai Player (meter).")]
+        public float meleeRange = 2f;
+
         [Header("Gerakan")]
         [Tooltip("Centang untuk Attacker: tetap bergerak melingkar (strafe) saat menembak, tidak berdiri diam.")]
         public bool keepMovingWhileAttacking = false;
