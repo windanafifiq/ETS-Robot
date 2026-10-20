@@ -36,6 +36,14 @@ namespace RobotArena.Enemy
         private RobotPerception perception;
         private HealthSystem health;
         private UtilityScorer scorer;
+        private Animator anim; // VARIABEL ANIMATOR BARU
+
+        [Header("Serangan Jarak Dekat (Attacker)")]
+        [Tooltip("Jeda dari mulai animasi sampai pukulan mengenai (detik). Sesuaikan dengan animasimu.")]
+        [SerializeField] private float meleeHitDelay = 0.35f;
+        [Tooltip("Nama parameter Trigger di Animator. Satu dipilih acak tiap serangan. Isi 'Attack', atau 'Punch' dan 'Kick' kalau kamu membuatnya terpisah.")]
+        [SerializeField] private string[] attackTriggers = new string[] { "Attack" };
+        private bool attacking;
 
         private float stateTimer;
         private float weaponTimer;
@@ -52,6 +60,9 @@ namespace RobotArena.Enemy
             agent = GetComponent<NavMeshAgent>();
             perception = GetComponent<RobotPerception>();
             health = GetComponent<HealthSystem>();
+            
+            // AMBIL KOMPONEN ANIMATOR DI SINI
+            anim = GetComponentInChildren<Animator>(); 
 
             patrol = GetComponent<NpcPatrol>();
             if (patrol == null) patrol = gameObject.AddComponent<NpcPatrol>();
@@ -86,7 +97,16 @@ namespace RobotArena.Enemy
             stateTimer += Time.deltaTime;
             weaponTimer -= Time.deltaTime;
             decisionTimer -= Time.deltaTime;
-             recentDamageTimer -= Time.deltaTime;
+            recentDamageTimer -= Time.deltaTime;
+
+            // --- LOGIKA ANIMASI (BARU) ---
+            if (anim != null && agent != null)
+            {
+                // Ubah Float "Speed" di Animator berdasarkan kecepatan NavMeshAgent
+                // (Idle = 0, Walk = nilai di atas 0)
+                anim.SetFloat("Speed", agent.velocity.magnitude);
+            }
+            // -----------------------------
 
             // Saat bertarung dan melihat Player, arah badan diatur FaceTarget(), bukan oleh agent
             agent.updateRotation = !(CurrentState == RobotState.Combat && perception.CanSeePlayer);
@@ -156,7 +176,7 @@ namespace RobotArena.Enemy
                 decisionTimer = decisionInterval;
                 bool coverAvailable = CoverPointManager.Instance != null &&
                     CoverPointManager.Instance.FindNearestAvailableCover(transform.position, targetPos, transform) != null;
-                bool weaponReady = weaponTimer <= 0f;
+                bool weaponReady = utilityWeights.isMelee || weaponTimer <= 0f;
 
                 LastUtilityScores = scorer.GetScores(distance, health.HPPercent, WasDamagedRecently, coverAvailable, weaponReady);
                 LastChosenAction = scorer.ChooseBestAction(distance, health.HPPercent, WasDamagedRecently, coverAvailable, weaponReady);
@@ -168,6 +188,13 @@ namespace RobotArena.Enemy
         private void ExecuteAction(UtilityAction action, Vector3 targetPos, float distance)
         {
             bool canShoot = perception.CanSeePlayer && distance <= utilityWeights.attackRange;
+
+            // Attacker jarak dekat: kejar lalu pukul/tendang
+            if (utilityWeights.isMelee && action == UtilityAction.Attack)
+            {
+                HandleMeleeAttack(targetPos, distance);
+                return;
+            }
 
             switch (action)
             {
@@ -195,7 +222,7 @@ namespace RobotArena.Enemy
             }
         }
 
-                // Bergerak melingkar di sekitar Player supaya robot bukan sasaran diam
+        // Bergerak melingkar di sekitar Player supaya robot bukan sasaran diam
         private void StrafeAround(Vector3 targetPos, float distance)
         {
             Vector3 toTarget = targetPos - transform.position;
@@ -217,10 +244,70 @@ namespace RobotArena.Enemy
             NavUtil.TryMoveTo(agent, destination);
         }
 
+                // ---------- SERANGAN JARAK DEKAT ----------
+        private void HandleMeleeAttack(Vector3 targetPos, float distance)
+        {
+            bool inReach = perception.CanSeePlayer && distance <= utilityWeights.meleeRange;
+
+            if (!inReach)
+            {
+                NavUtil.TryMoveTo(agent, targetPos);   // belum dekat: kejar Player
+                return;
+            }
+
+            agent.ResetPath();                          // sudah dekat: berhenti
+
+            if (weaponTimer > 0f || attacking) return;
+
+            weaponTimer = weaponCooldown;
+            StartCoroutine(MeleeStrike());
+        }
+
+        private System.Collections.IEnumerator MeleeStrike()
+        {
+            attacking = true;
+
+            if (anim != null && attackTriggers != null && attackTriggers.Length > 0)
+            {
+                string trigger = attackTriggers[Random.Range(0, attackTriggers.Length)];
+                if (HasTrigger(trigger)) anim.SetTrigger(trigger);
+            }
+
+            yield return new WaitForSeconds(meleeHitDelay);
+
+            // Beri damage hanya kalau Player masih dalam jangkauan
+            if (CurrentState == RobotState.Combat && perception.PlayerTransform != null)
+            {
+                HealthSystem target = perception.PlayerTransform.GetComponent<HealthSystem>();
+                float d = Vector3.Distance(transform.position, perception.PlayerTransform.position);
+
+                if (target != null && !target.IsDead && target.Team != health.Team &&
+                    d <= utilityWeights.meleeRange * 1.3f)
+                {
+                    target.TakeDamage(damage);
+                }
+            }
+
+            attacking = false;
+        }
+
+        private bool HasTrigger(string triggerName)
+        {
+            if (anim == null) return false;
+            foreach (AnimatorControllerParameter p in anim.parameters)
+            {
+                if (p.name == triggerName && p.type == AnimatorControllerParameterType.Trigger) return true;
+            }
+            return false;
+        }
         private void TryFireWeapon()
         {
             if (weaponTimer > 0f || projectilePrefab == null || firePoint == null) return;
             if (!perception.CanSeePlayer) return;
+
+            // --- LOGIKA ANIMASI SERANGAN (BARU) ---
+            if (anim != null) anim.SetTrigger("Attack");
+            // ---------------------------------------
 
             Vector3 direction = (perception.PlayerAimPosition - firePoint.position).normalized;
             GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.LookRotation(direction));

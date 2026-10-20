@@ -3,7 +3,12 @@ guid: e6efb0606e0e41945bc5f3be4549b7c9
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: George_Texture
+    second: {fileID: 2100000, guid: a81ba3dcecabbf14f9e2e86e4151eab3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -106,7 +111,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
