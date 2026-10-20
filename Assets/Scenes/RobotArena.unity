@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5061350984b8c4d20af4c7b3e5a9e027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotArena.HealthSystem
-  maxHP: 100
+  maxHP: 150
   team: 0
   currentHP: 0
   isDead: 0
@@ -781,6 +781,93 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &115481284
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1216355577}
+    m_Modifications:
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399783799973844114, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Medic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 115481287}
+  m_SourcePrefab: {fileID: 100100000, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+--- !u!4 &115481285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+  m_PrefabInstance: {fileID: 115481284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &115481286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+  m_PrefabInstance: {fileID: 115481284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &115481287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115481286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 6
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1 &131296680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1792,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &493984137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493984139}
+  - component: {fileID: 493984138}
+  m_Layer: 7
+  m_Name: CoverPointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &493984138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493984137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637097bbd16fea147afe92ac1c1acfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Environment.CoverPointManager
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxCoverDistance: 25
+--- !u!4 &493984139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493984137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.61428, y: -0, z: 4.01429}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505997195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2394,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709533131}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &733488868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733488870}
+  - component: {fileID: 733488869}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &733488869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733488868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 510c6738f37b639449c2bd8fa2a90e3c, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &733488870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733488868}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.42857, y: 0, z: -1.42856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793205472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,7 +2801,7 @@ Transform:
   m_GameObject: {fileID: 1052163885}
   serializedVersion: 2
   m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 0, y: 20, z: -30}
+  m_LocalPosition: {x: 0, y: 40, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2667,6 +2866,138 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 12, z: -9}
   smoothSpeed: 5
+--- !u!1 &1088466394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088466395}
+  - component: {fileID: 1088466396}
+  m_Layer: 0
+  m_Name: CoverPoint_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1088466395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088466394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.038124435, y: 0.10430892, z: -0.10938324, w: 0.98777604}
+  m_LocalPosition: {x: -21.37, y: -0.5, z: 25.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695331987}
+  m_LocalEulerAnglesHint: {x: 5.632, y: 11.46, z: -12.072}
+--- !u!114 &1088466396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088466394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c2c08ccf500ce479eb486ab98fe447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Environment.CoverPoint
+--- !u!1 &1125865100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125865101}
+  - component: {fileID: 1125865102}
+  m_Layer: 0
+  m_Name: CoverPoint_01 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125865101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125865100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.038124435, y: 0.10430892, z: -0.10938324, w: 0.98777604}
+  m_LocalPosition: {x: 27.9, y: -0.5, z: 3.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695331987}
+  m_LocalEulerAnglesHint: {x: 5.632, y: 11.46, z: -12.072}
+--- !u!114 &1125865102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125865100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c2c08ccf500ce479eb486ab98fe447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Environment.CoverPoint
+--- !u!1 &1134805083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134805084}
+  - component: {fileID: 1134805085}
+  m_Layer: 0
+  m_Name: CoverPoint_01 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134805084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134805083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.038124435, y: 0.10430892, z: -0.10938324, w: 0.98777604}
+  m_LocalPosition: {x: 25.62, y: -0.5, z: 19.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695331987}
+  m_LocalEulerAnglesHint: {x: 5.632, y: 11.46, z: -12.072}
+--- !u!114 &1134805085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134805083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c2c08ccf500ce479eb486ab98fe447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Environment.CoverPoint
 --- !u!1 &1135036776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,6 +3193,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196259667}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1216355576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216355577}
+  m_Layer: 0
+  m_Name: NPC_Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216355577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216355576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8949221089692189816}
+  - {fileID: 1520095466}
+  - {fileID: 115481285}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262706441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3187,6 +3552,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363675668}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1379344530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379344531}
+  - component: {fileID: 1379344532}
+  m_Layer: 0
+  m_Name: CoverPoint_01 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379344531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379344530}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.038124435, y: 0.10430892, z: -0.10938324, w: 0.98777604}
+  m_LocalPosition: {x: 33.19, y: -0.5, z: -15.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695331987}
+  m_LocalEulerAnglesHint: {x: 5.632, y: 11.46, z: -12.072}
+--- !u!114 &1379344532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379344530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c2c08ccf500ce479eb486ab98fe447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Environment.CoverPoint
 --- !u!1 &1381048052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3735,6 +4144,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503739806}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1520095465
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1216355577}
+    m_Modifications:
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Sniper
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1520095468}
+  m_SourcePrefab: {fileID: 100100000, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+--- !u!4 &1520095466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+  m_PrefabInstance: {fileID: 1520095465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1520095467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+  m_PrefabInstance: {fileID: 1520095465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520095468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520095467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 4
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1 &1587469647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,6 +4627,42 @@ Transform:
   - {fileID: 329551432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1695331986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695331987}
+  m_Layer: 0
+  m_Name: CoverPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1695331987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695331986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1088466395}
+  - {fileID: 1134805084}
+  - {fileID: 1125865101}
+  - {fileID: 1379344531}
+  - {fileID: 1986962897}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798067024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,6 +4908,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881489584}
   m_CullTransparentMesh: 1
+--- !u!1 &1896529657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1896529659}
+  - component: {fileID: 1896529658}
+  m_Layer: 0
+  m_Name: AIDebugManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1896529658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896529657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb25b8fd10d246142b5c6c55b6b4b198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.DebugTools.AIDebugManager
+--- !u!4 &1896529659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896529657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.61428, y: -0, z: 4.01429}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955037632
 GameObject:
   m_ObjectHideFlags: 0
@@ -4426,6 +5002,37 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fade719c160db4f228655580be12eaa1, type: 2}
   respawnDelay: 15
   heightOffset: 0.6
+--- !u!1 &1986962896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986962897}
+  m_Layer: 0
+  m_Name: CoverPoint_02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1986962897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986962896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695331987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047725663
 GameObject:
   m_ObjectHideFlags: 0
@@ -4814,6 +5421,93 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7139138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8949221089692189815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1216355577}
+    m_Modifications:
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Attacker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8949221089692189818}
+  m_SourcePrefab: {fileID: 100100000, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+--- !u!4 &8949221089692189816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+  m_PrefabInstance: {fileID: 8949221089692189815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8949221089692189817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+  m_PrefabInstance: {fileID: 8949221089692189815}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8949221089692189818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949221089692189817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 10
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4827,3 +5521,8 @@ SceneRoots:
   - {fileID: 50489301}
   - {fileID: 1639203716}
   - {fileID: 1282499582}
+  - {fileID: 733488870}
+  - {fileID: 1695331987}
+  - {fileID: 493984139}
+  - {fileID: 1896529659}
+  - {fileID: 1216355577}
