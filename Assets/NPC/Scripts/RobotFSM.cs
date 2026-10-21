@@ -101,11 +101,11 @@ namespace RobotArena.Enemy
 
             // --- LOGIKA ANIMASI (BARU) ---
             if (anim != null && agent != null)
-            {
-                // Ubah Float "Speed" di Animator berdasarkan kecepatan NavMeshAgent
-                // (Idle = 0, Walk = nilai di atas 0)
-                anim.SetFloat("Speed", agent.velocity.magnitude);
-            }
+{
+    // Jika robot sedang bergerak, set Speed ke 1. Jika diam, set ke 0.
+    float currentSpeed = (agent.velocity.magnitude > 0.1f) ? 1f : 0f;
+    anim.SetFloat("Speed", currentSpeed);
+}       
             // -----------------------------
 
             // Saat bertarung dan melihat Player, arah badan diatur FaceTarget(), bukan oleh agent

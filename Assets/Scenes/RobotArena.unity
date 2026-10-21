@@ -715,8 +715,8 @@ MonoBehaviour:
   player: {fileID: 7139134}
   autoFindEnemies: 1
   enemies: []
-  winPanel: {fileID: 1324586811}
-  losePanel: {fileID: 131296680}
+  winPanel: {fileID: 0}
+  losePanel: {fileID: 0}
 --- !u!4 &50489301
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,6 +1170,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1216355577}
     m_Modifications:
+    - target: {fileID: 1769442827983967920, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
+      propertyPath: m_Center.y
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 4ff5ffba06cf7d34cb8b4569f7341f55, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9
@@ -2110,6 +2114,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320246441}
   m_CullTransparentMesh: 1
+--- !u!1 &329017638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 329017640}
+  - component: {fileID: 329017639}
+  m_Layer: 0
+  m_Name: WinLoseScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &329017639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329017638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20273a691376e54eba12ea5d51c74dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.WinLoseScreen
+  winTitle: SIMULATION PASSED
+  winSubtitle: ARC-7 dinyatakan LULUS dan siap diterjunkan.
+  loseTitle: SYSTEM FAILURE
+  loseSubtitle: ARC-7 gagal menyelesaikan simulasi.
+  retryLabel: COBA LAGI
+--- !u!4 &329017640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329017638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.27569, y: 3.22833, z: 0.18063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &329551431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,7 +2919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &493252222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6488,7 +6541,7 @@ RectTransform:
   m_Father: {fileID: 1135036777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8706,6 +8759,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1769442827983967920, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Height
+      value: 9.169104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769442827983967920, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Radius
+      value: 2.8380103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769442827983967920, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Center.x
+      value: -0.065413
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769442827983967920, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Center.y
+      value: 2.8489218
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769442827983967920, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Center.z
+      value: 0.91269064
+      objectReference: {fileID: 0}
     - target: {fileID: 2046244757910333335, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -8978,6 +9051,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8190025008191270844, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 66c7d5ec6f116f8418c19f07c2cb1da4, type: 2}
     - target: {fileID: 8334067729317315990, guid: ab0db1cf40c18b643a0f168a41de73a3, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -9074,3 +9151,4 @@ SceneRoots:
   - {fileID: 493984139}
   - {fileID: 1896529659}
   - {fileID: 1216355577}
+  - {fileID: 329017640}
