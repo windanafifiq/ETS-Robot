@@ -18,7 +18,7 @@ MonoBehaviour:
   heldPosition: {x: -0.2, y: -0.2, z: -0.2}
   heldRotation: {x: 0, y: 180, z: 0}
   heldScale: 1
-  pickupScale: 1
+  pickupScale: 3
   shootSound: {fileID: 8300000, guid: 7398f30a45f7549c5b031539bfca8b26, type: 3}
   damage: 10
   fireRate: 0.25
