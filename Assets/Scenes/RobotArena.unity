@@ -4691,62 +4691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1216355577}
     m_Modifications:
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Height
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Center.y
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3037904964796547734, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: isDead
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360970105180864178, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: detectionRadius
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360970105180864178, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: targetHeightOffset
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 4761432291397969448, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: sniperZone
       value: 
       objectReference: {fileID: 55652994}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 236184540853005752, guid: 66480a89dbe92ed419372044bb3a4b15, type: 3}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: stationarySniper
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.92
@@ -4791,53 +4739,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sniper_Right
       objectReference: {fileID: 0}
-    - target: {fileID: 8320714380945333487, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 8320714380945333487, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15833
-      objectReference: {fileID: 0}
-    - target: {fileID: 8320714380945333487, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.72
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 979471964}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
 --- !u!4 &979471962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
   m_PrefabInstance: {fileID: 979471961}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &979471963 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-  m_PrefabInstance: {fileID: 979471961}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &979471964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 979471963}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
-  patrolRadius: 4
-  minPause: 0.5
-  maxPause: 2
-  arriveDistance: 1
-  maxLegTime: 10
 --- !u!1 &1052163885
 GameObject:
   m_ObjectHideFlags: 0
@@ -7111,62 +7022,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1216355577}
     m_Modifications:
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Height
-      value: 4.5
+    - target: {fileID: 254142037511443086, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: MaxDistance
+      value: 500
       objectReference: {fileID: 0}
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769442827983967920, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_Center.y
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3037904964796547734, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: isDead
+    - target: {fileID: 254142037511443086, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360970105180864178, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: detectionRadius
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360970105180864178, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: targetHeightOffset
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 4245675755562902025, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 4761432291397969448, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: damage
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: sniperZone
       value: 
       objectReference: {fileID: 636194547}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 236184540853005752, guid: 66480a89dbe92ed419372044bb3a4b15, type: 3}
-    - target: {fileID: 6535488891304672207, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: stationarySniper
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.92
@@ -7211,45 +7078,145 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sniper
       objectReference: {fileID: 0}
-    - target: {fileID: 8320714380945333487, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15833
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1520095468}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
 --- !u!4 &1520095466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978005917475492152, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
   m_PrefabInstance: {fileID: 1520095465}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1520095467 stripped
+--- !u!1 &1562000040
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7399783799973844114, guid: 504ad3541e8c4e446ba8bdab28e7366a, type: 3}
-  m_PrefabInstance: {fileID: 1520095465}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1520095468
-MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520095467}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
-  patrolRadius: 4
-  minPause: 0.5
-  maxPause: 2
-  arriveDistance: 1
-  maxLegTime: 10
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562000042}
+  - component: {fileID: 1562000041}
+  m_Layer: 0
+  m_Name: BGM_Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1562000041
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562000040}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 83c8ce7c3eac2479bb894d1afab68dab, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1562000042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562000040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.90213, y: 3.64423, z: 10.31705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587469647
 GameObject:
   m_ObjectHideFlags: 0
@@ -9508,3 +9475,4 @@ SceneRoots:
   - {fileID: 1896529659}
   - {fileID: 1216355577}
   - {fileID: 329017640}
+  - {fileID: 1562000042}

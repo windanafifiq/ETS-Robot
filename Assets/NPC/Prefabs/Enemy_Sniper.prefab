@@ -47,6 +47,9 @@ GameObject:
   - component: {fileID: 6535488891304672207}
   - component: {fileID: 5408447456039013643}
   - component: {fileID: 1489530860467390133}
+  - component: {fileID: 254142037511443086}
+  - component: {fileID: 7207358855177876251}
+  - component: {fileID: 8473779419335557527}
   m_Layer: 9
   m_Name: Enemy_Sniper
   m_TagString: Untagged
@@ -91,10 +94,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.5
+  m_Height: 4.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 2.2, z: 0}
 --- !u!195 &1363343580060963768
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -129,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42fcc02a7b9cfb4fb87b36d816b9cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.RobotPerception
-  detectionRadius: 22
+  detectionRadius: 45
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -137,7 +140,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   eyePoint: {fileID: 4761432291397969448}
-  targetHeightOffset: 1
+  targetHeightOffset: 2
   scanInterval: 0.2
   memoryDuration: 5
 --- !u!114 &3037904964796547734
@@ -169,14 +172,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.RobotFSM
   utilityWeights: {fileID: 11400000, guid: 8b631cb4f7f31ff47b1570f141491b33, type: 2}
+  stationarySniper: 1
+  sniperZone: {fileID: 0}
   firePoint: {fileID: 4245675755562902025}
-  projectilePrefab: {fileID: 236184540853005752, guid: f07373b4bad8642909e3c4b74903e8e3, type: 3}
+  projectilePrefab: {fileID: 236184540853005752, guid: 66480a89dbe92ed419372044bb3a4b15, type: 3}
   weaponCooldown: 2.5
-  damage: 20
+  damage: 10
   alertDelay: 0.5
   decisionInterval: 0.4
   retreatDistance: 14
   recentDamageWindow: 1.5
+  meleeHitDelay: 0.35
+  attackTriggers:
+  - Attack
 --- !u!114 &5408447456039013643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +210,137 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734868327143c934da3e1ae705c90fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcTestHelper
+--- !u!82 &254142037511443086
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399783799973844114}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: e73bffb39b4bbae4db579a8c91c99bff, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7207358855177876251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399783799973844114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 4
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
+--- !u!114 &8473779419335557527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399783799973844114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244bb286eff51649a2a1104a74432c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotArena.Enemy.NpcPatrol
+  patrolRadius: 4
+  minPause: 0.5
+  maxPause: 2
+  arriveDistance: 1
+  maxLegTime: 10
 --- !u!1 &7535694124328302192
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 7535694124328302192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0.8}
+  m_LocalPosition: {x: -0.83, y: 4.57, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,15 +382,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 47a909d661f4d0f4abbe6aae90e7cdb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02431
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47a909d661f4d0f4abbe6aae90e7cdb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.15833
+      value: 0.15833
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47a909d661f4d0f4abbe6aae90e7cdb3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.18063
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47a909d661f4d0f4abbe6aae90e7cdb3, type: 3}
       propertyPath: m_LocalRotation.w
