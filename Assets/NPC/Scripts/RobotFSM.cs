@@ -15,6 +15,10 @@ namespace RobotArena.Enemy
     {
         [Header("Role Config")]
         [SerializeField] private RobotUtilityWeights utilityWeights;
+     
+        [Header("Sniper Settings")]
+        [SerializeField] private bool stationarySniper = false;
+        [SerializeField] private SniperZone sniperZone;
 
         [Header("Weapon")]
         [SerializeField] private Transform firePoint;
@@ -110,6 +114,38 @@ namespace RobotArena.Enemy
 
             // Saat bertarung dan melihat Player, arah badan diatur FaceTarget(), bukan oleh agent
             agent.updateRotation = !(CurrentState == RobotState.Combat && perception.CanSeePlayer);
+
+            if (stationarySniper)
+            {
+                agent.isStopped = true;
+                agent.updateRotation = false;
+
+                if (Time.frameCount % 120 == 0)
+                {
+                    Debug.Log(
+                        $"SNIPER DEBUG | " +
+                        $"Player ditemukan: {perception.PlayerTransform != null} | " +
+                        $"Bisa melihat: {perception.CanSeePlayer} | " +
+                        $"Zone terpasang: {sniperZone != null} | " +
+                        $"Player dalam zona: " +
+                        $"{(sniperZone != null && perception.PlayerTransform != null && sniperZone.IsPlayerInside(perception.PlayerTransform))}"
+                    );
+                }
+
+                if (agent.isOnNavMesh && agent.hasPath)
+                    agent.ResetPath();
+
+                if (sniperZone != null &&
+                    perception.CanSeePlayer &&
+                    perception.PlayerTransform != null &&
+                    sniperZone.IsPlayerInside(perception.PlayerTransform))
+                {
+                    FaceTarget(perception.PlayerTransform.position);
+                    TryFireWeapon();
+                }
+
+                return;
+            }
 
             switch (CurrentState)
             {

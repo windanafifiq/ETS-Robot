@@ -45,8 +45,25 @@ namespace RobotArena.Enemy
         private void Scan()
         {
             CanSeePlayer = false;
-            Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
-            if (hits.Length == 0) { DistanceToPlayer = Mathf.Infinity; return; }
+            // Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
+            // if (hits.Length == 0) { DistanceToPlayer = Mathf.Infinity; return; }
+            
+            Collider[] hits = Physics.OverlapSphere(
+                transform.position,
+                detectionRadius,
+                playerLayer
+            );
+
+            if (Time.frameCount % 120 < 12)
+            {
+                Debug.Log($"[SNIPER SCAN] Collider ditemukan: {hits.Length}", this);
+            }
+
+            if (hits.Length == 0)
+            {
+                DistanceToPlayer = Mathf.Infinity;
+                return;
+            }
 
             HealthSystem hs = hits[0].GetComponentInParent<HealthSystem>();
             
@@ -63,6 +80,27 @@ namespace RobotArena.Enemy
             Vector3 targetPoint = target.position + Vector3.up * targetHeightOffset;
             Vector3 direction = targetPoint - origin;
             float distance = direction.magnitude;
+
+        
+            if (Time.frameCount % 120 < 12)
+            {
+                bool blocked = Physics.Raycast(
+                    origin,
+                    direction.normalized,
+                    out RaycastHit debugHit,
+                    distance,
+                    obstacleLayer | playerLayer
+                );
+
+                Debug.Log(
+                    blocked
+                    ? $"[SNIPER RAYCAST] Terkena: {debugHit.collider.name} | Layer: {LayerMask.LayerToName(debugHit.collider.gameObject.layer)}"
+                    : "[SNIPER RAYCAST] Tidak mengenai objek apa pun",
+                    this
+                );
+
+                Debug.DrawRay(origin, direction, Color.red, 2f);
+            }
 
             if (Physics.Raycast(origin, direction.normalized, out RaycastHit hit, distance, obstacleLayer | playerLayer))
             {
