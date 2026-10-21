@@ -7,6 +7,8 @@ using RobotArena.DebugTools;
 namespace RobotArena.Enemy
 {
     public enum RobotState { Idle, Alert, Combat, Retreat, Dead }
+    
+    public enum SniperState { Idle, Alert, Combat, Tracking, Dead }
 
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(RobotPerception))]
@@ -19,6 +21,30 @@ namespace RobotArena.Enemy
         [Header("Sniper Settings")]
         [SerializeField] private bool stationarySniper = false;
         [SerializeField] private SniperZone sniperZone;
+
+        [Header("Sniper FSM & Utility AI")]
+        [SerializeField] private float sniperTrackingDuration = 4f;
+
+        // Sistem pengambilan keputusan khusus Sniper
+        private SniperUtilityScorer sniperScorer;
+
+        // Menyimpan hasil keputusan Utility AI untuk debugging
+        private SniperAction currentSniperAction = SniperAction.DefensiveHold;
+        private SniperUtilityScorer.Scores sniperScores;
+
+        public SniperState CurrentSniperState { get; private set; }
+            = SniperState.Idle;
+
+        private float sniperStateTimer;
+
+        private void ChangeSniperState(SniperState newState)
+        {
+            if (CurrentSniperState == newState)
+                return;
+
+            CurrentSniperState = newState;
+            sniperStateTimer = 0f;
+        }
 
         [Header("Weapon")]
         [SerializeField] private Transform firePoint;
@@ -78,6 +104,7 @@ namespace RobotArena.Enemy
                 return;
             }
             scorer = new UtilityScorer(utilityWeights);
+            sniperScorer = new SniperUtilityScorer();
         }
 
         private void OnEnable()
@@ -105,11 +132,11 @@ namespace RobotArena.Enemy
 
             // --- LOGIKA ANIMASI (BARU) ---
             if (anim != null && agent != null)
-{
-    // Jika robot sedang bergerak, set Speed ke 1. Jika diam, set ke 0.
-    float currentSpeed = (agent.velocity.magnitude > 0.1f) ? 1f : 0f;
-    anim.SetFloat("Speed", currentSpeed);
-}       
+            {
+                // Jika robot sedang bergerak, set Speed ke 1. Jika diam, set ke 0.
+                float currentSpeed = (agent.velocity.magnitude > 0.1f) ? 1f : 0f;
+                if (HasFloatParameter("Speed")) anim.SetFloat("Speed", currentSpeed);
+            }       
             // -----------------------------
 
             // Saat bertarung dan melihat Player, arah badan diatur FaceTarget(), bukan oleh agent
@@ -117,33 +144,7 @@ namespace RobotArena.Enemy
 
             if (stationarySniper)
             {
-                agent.isStopped = true;
-                agent.updateRotation = false;
-
-                if (Time.frameCount % 120 == 0)
-                {
-                    Debug.Log(
-                        $"SNIPER DEBUG | " +
-                        $"Player ditemukan: {perception.PlayerTransform != null} | " +
-                        $"Bisa melihat: {perception.CanSeePlayer} | " +
-                        $"Zone terpasang: {sniperZone != null} | " +
-                        $"Player dalam zona: " +
-                        $"{(sniperZone != null && perception.PlayerTransform != null && sniperZone.IsPlayerInside(perception.PlayerTransform))}"
-                    );
-                }
-
-                if (agent.isOnNavMesh && agent.hasPath)
-                    agent.ResetPath();
-
-                if (sniperZone != null &&
-                    perception.CanSeePlayer &&
-                    perception.PlayerTransform != null &&
-                    sniperZone.IsPlayerInside(perception.PlayerTransform))
-                {
-                    FaceTarget(perception.PlayerTransform.position);
-                    TryFireWeapon();
-                }
-
+                HandleStationarySniper();
                 return;
             }
 
@@ -164,6 +165,127 @@ namespace RobotArena.Enemy
             decisionTimer = 0f; 
             if (newState != RobotState.Retreat && newState != RobotState.Combat) ReleaseCover();
             if (newState == RobotState.Idle) patrol.Begin();
+        }
+
+        // Sniper hanya memburu target yang terlihat di zona, tetapi boleh
+        // mengingat posisi terakhir di dalam zona saat LOS terputus.
+        private bool SniperCanSeeTarget()
+        {
+            return sniperZone != null &&
+                   sniperZone.isActiveAndEnabled &&
+                   perception.CanSeePlayer &&
+                   perception.PlayerTransform != null &&
+                   sniperZone.IsPlayerInside(perception.PlayerTransform);
+        }
+
+        private bool IsRememberedPositionInsideSniperZone(Vector3 worldPoint)
+        {
+            BoxCollider box = sniperZone.GetComponent<BoxCollider>();
+            if (box == null || !box.enabled) return false;
+            Vector3 local = box.transform.InverseTransformPoint(worldPoint) - box.center;
+            Vector3 half = box.size * 0.5f;
+            return Mathf.Abs(local.x) <= half.x &&
+                   Mathf.Abs(local.y) <= half.y &&
+                   Mathf.Abs(local.z) <= half.z;
+        }
+
+        private bool SniperRemembersTarget()
+        {
+            return sniperZone != null &&
+                   sniperZone.isActiveAndEnabled &&
+                   perception.HasMemoryOfPlayer &&
+                   perception.TimeSinceLastSeen <= sniperTrackingDuration &&
+                   IsRememberedPositionInsideSniperZone(perception.LastKnownPlayerPosition);
+        }
+
+        private void UpdateSniperState(bool visible, bool remembered)
+        {
+            sniperStateTimer += Time.deltaTime;
+
+            switch (CurrentSniperState)
+            {
+                case SniperState.Idle:
+                    if (visible) ChangeSniperState(SniperState.Alert);
+                    break;
+
+                case SniperState.Alert:
+                    if (!visible)
+                        ChangeSniperState(remembered ? SniperState.Tracking : SniperState.Idle);
+                    else if (sniperStateTimer >= alertDelay)
+                        ChangeSniperState(SniperState.Combat);
+                    break;
+
+                case SniperState.Combat:
+                    if (!visible)
+                        ChangeSniperState(remembered ? SniperState.Tracking : SniperState.Idle);
+                    break;
+
+                case SniperState.Tracking:
+                    if (visible)
+                        ChangeSniperState(SniperState.Alert);
+                    else if (!remembered)
+                        ChangeSniperState(SniperState.Idle);
+                    break;
+
+                case SniperState.Dead:
+                    break;
+            }
+        }
+
+        private void HandleStationarySniper()
+        {
+            // Jangan berpindah dari tower.
+            if (agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+                if (agent.hasPath) agent.ResetPath();
+            }
+            agent.updateRotation = false;
+
+            bool visible = SniperCanSeeTarget();
+            bool remembered = SniperRemembersTarget();
+            UpdateSniperState(visible, remembered);
+
+            // Skor dihitung dari kondisi nyata; hanya Combat yang memakai
+            // pemilihan aksi Utility untuk menentukan tembak vs bertahan.
+            sniperScores = sniperScorer.GetScores(
+                visible,
+                visible || remembered,
+                remembered,
+                weaponTimer <= 0f,
+                health.HPPercent
+            );
+
+            switch (CurrentSniperState)
+            {
+                case SniperState.Idle:
+                    currentSniperAction = SniperAction.DefensiveHold;
+                    break;
+
+                case SniperState.Alert:
+                    currentSniperAction = SniperAction.DefensiveHold;
+                    if (visible) FaceTarget(perception.PlayerTransform.position);
+                    break;
+
+                case SniperState.Tracking:
+                    currentSniperAction = remembered
+                        ? SniperAction.TrackTarget
+                        : SniperAction.DefensiveHold;
+                    if (remembered) FaceTarget(perception.LastKnownPlayerPosition);
+                    break;
+
+                case SniperState.Combat:
+                    // Tetap arahkan badan ke Player saat cooldown.
+                    if (visible) FaceTarget(perception.PlayerTransform.position);
+                    currentSniperAction = sniperScorer.ChooseBestAction(sniperScores);
+                    if (currentSniperAction == SniperAction.Shoot && visible)
+                        TryFireWeapon();
+                    break;
+
+                case SniperState.Dead:
+                    currentSniperAction = SniperAction.DefensiveHold;
+                    break;
+            }
         }
 
         private void HandleIdle()
@@ -327,6 +449,15 @@ namespace RobotArena.Enemy
             attacking = false;
         }
 
+        private bool HasFloatParameter(string parameterName)
+        {
+            if (anim == null || anim.runtimeAnimatorController == null) return false;
+            foreach (AnimatorControllerParameter parameter in anim.parameters)
+                if (parameter.name == parameterName && parameter.type == AnimatorControllerParameterType.Float)
+                    return true;
+            return false;
+        }
+
         private bool HasTrigger(string triggerName)
         {
             if (anim == null) return false;
@@ -342,7 +473,7 @@ namespace RobotArena.Enemy
             if (!perception.CanSeePlayer) return;
 
             // --- LOGIKA ANIMASI SERANGAN (BARU) ---
-            if (anim != null) anim.SetTrigger("Attack");
+            if (anim != null && HasTrigger("Attack")) anim.SetTrigger("Attack");
             // ---------------------------------------
 
             Vector3 direction = (perception.PlayerAimPosition - firePoint.position).normalized;
@@ -400,6 +531,10 @@ namespace RobotArena.Enemy
 
         private void HandleDeath()
         {
+
+            if (stationarySniper)
+                ChangeSniperState(SniperState.Dead);
+                
             ChangeState(RobotState.Dead);
             ReleaseCover();
             agent.isStopped = true;
@@ -410,8 +545,21 @@ namespace RobotArena.Enemy
 
         public string GetDebugText()
         {
+            if (stationarySniper)
+            {
+                return
+                    $"SNIPER | {CurrentSniperState}\n" +
+                    $"Action: {currentSniperAction}\n" +
+                    $"Shoot:{sniperScores.shoot:F2} " +
+                    $"Track:{sniperScores.track:F2} " +
+                    $"Defend:{sniperScores.defensive:F2}\n" +
+                    $"HP:{health.CurrentHP}/{health.MaxHP}";
+            }
+
             var s = LastUtilityScores;
-            return $"{CurrentState}  [{LastChosenAction}]\nA:{s.attack:F2} D:{s.distance:F2} C:{s.cover:F2} R:{s.retreat:F2}\nHP:{health.CurrentHP}/{health.MaxHP}";
+            return $"{CurrentState} [{LastChosenAction}]\n" +
+                   $"A:{s.attack:F2} D:{s.distance:F2} C:{s.cover:F2} R:{s.retreat:F2}\n" +
+                   $"HP:{health.CurrentHP}/{health.MaxHP}";
         }
     }
 }
